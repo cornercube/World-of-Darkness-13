@@ -400,6 +400,19 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
+/obj/effect/decal/skates
+	name = "skateboards"
+	desc = "skateboards on display."
+	icon = 'code/modules/wod13/props.dmi'
+	icon_state = "skateshop1"
+	plane = GAME_PLANE
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+
+/obj/effect/decal/skates/Initialize()
+	. = ..()
+	icon_state = "rack[rand(1, 2)]"
+
 /obj/structure/hydrant
 	name = "hydrant"
 	desc = "Used for firefighting."
