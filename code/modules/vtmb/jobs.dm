@@ -52,9 +52,11 @@
 	allowed_bloodlines = list("Tremere", "Ventrue", "Nosferatu", "Toreador", "Malkavian", "Brujah", "Lasombra", "Gangrel", "True Brujah")
 
 	my_contact_is_important = TRUE
-	known_contacts = list("Sheriff",
-												"Seneschal",
-												"Baron")
+	known_contacts = list(
+		"Sheriff",
+		"Seneschal",
+		"Baron"
+	)
 
 	v_duty = "You are the top dog of this city. You hold Praxis over San Francisco, and your word is law. Make sure the Masquerade is upheld, and your status is respected."
 	experience_addition = 25
@@ -411,11 +413,11 @@
 
 /datum/job/vamp/vjanitor
 	title = "Street Janitor"
-	department_head = list("Baron")
+	department_head = list("Prince")
 	faction = "Vampire"
 	total_positions = 6
 	spawn_positions = 6
-	supervisors = "the Camarilla or the Anarchs"
+	supervisors = "the Camarilla."
 	selection_color = "#e3e3e3"
 
 	outfit = /datum/outfit/job/vjanitor
@@ -431,7 +433,7 @@
 	allowed_bloodlines = list("True Brujah", "Daughters of Cacophony", "Salubri", "Baali", "Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Giovanni", "Ministry", "Tzimisce", "Lasombra", "Caitiff")
 
 	v_duty = "Clean up all traces of Masquerade violations as the Camarilla has instructed you to."
-	duty = "Keep the streets clean. The government does pay you much to keep your mouth shut about the things you see."
+	duty = "Keep the streets clean. You are paid to keep your mouth shut and keep questions to yourselves."
 	minimal_masquerade = 0
 	experience_addition = 15
 
@@ -576,13 +578,15 @@
 //	minimal_generation = 11	//Uncomment when players get exp enough
 
 	my_contact_is_important = TRUE
-	known_contacts = list("Prince",
-												"Dealer")
+	known_contacts = list(
+		"Prince",
+		"Dealer"
+	)
 
 	v_duty = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
 	minimal_masquerade = 3
 	allowed_species = list("Vampire")
-	allowed_bloodlines = list("True Brujah", "Brujah", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Ventrue", "Lasombra", "Gargoyle")
+	allowed_bloodlines = list("Daughters of Cacophony", "True Brujah", "Brujah", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Ventrue", "Lasombra", "Gargoyle")
 	experience_addition = 20
 
 /datum/outfit/job/barkeeper
@@ -631,7 +635,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_BOUNCER
 	known_contacts = list("Baron")
-	allowed_bloodlines = list("True Brujah", "Daughters of Cacophony", "Brujah", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Tzimisce", "Caitiff", "Lasombra", "Gargoyle")
+	allowed_bloodlines = list("Daughters of Cacophony", "True Brujah", "Brujah", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Tzimisce", "Caitiff", "Ventrue", "Lasombra", "Gargoyle")
 
 	v_duty = "You work with the baron - whether because of your own ideals or friendship, or other reasons. That doesn't mean you will let someone disregard the one tradition you do agree with - the Masquerade."
 	minimal_masquerade = 2

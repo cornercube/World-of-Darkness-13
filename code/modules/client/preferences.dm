@@ -220,47 +220,50 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/clane_accessory
 
-/datum/preferences/proc/add_experience(var/amount)
-	if(amount)
-		true_experience = true_experience+amount
+/datum/preferences/proc/add_experience(amount)
+	true_experience = clamp(true_experience + amount, 0, 1000)
+
+/datum/preferences/proc/reset_character()
+	slotlocked = 0
+	diablerist = 0
+	torpor_count = 0
+	generation_bonus = 0
+	physique = 1
+	dexterity = 1
+	mentality = 1
+	social = 1
+	lockpicking = 0
+	athletics = 0
+	blood = 1
+	masquerade = initial(masquerade)
+	generation = initial(generation)
+	archetype = pick(subtypesof(/datum/archetype))
+	var/datum/archetype/A = new archetype()
+	physique = A.start_physique
+	mentality = A.start_mentality
+	social = A.start_social
+	blood = A.start_blood
+	qdel(clane)
+	clane = new /datum/vampireclane/brujah()
+	discipline_types = list()
+	discipline_levels = list()
+	for (var/i in 1 to clane.clane_disciplines.len)
+		discipline_types += clane.clane_disciplines[i]
+		discipline_levels += 1
+	humanity = clane.start_humanity
+	enlightenment = clane.enlightenment
+	random_species()
+	random_character()
+	body_model = rand(1, 3)
+	true_experience = 50
+	real_name = random_unique_name(gender)
+	save_character()
 
 /proc/reset_shit(var/mob/M)
 	if(M.key)
 		var/datum/preferences/P = GLOB.preferences_datums[ckey(M.key)]
 		if(P)
-			P.slotlocked = 0
-			P.torpor_count = 0
-			P.generation_bonus = 0
-			P.physique = 1
-			P.dexterity = 1
-			P.social = 1
-			P.mentality = 1
-			P.blood = 1
-			P.lockpicking = 0
-			P.athletics = 0
-			P.archetype = pick(subtypesof(/datum/archetype))
-			var/datum/archetype/A = new P.archetype()
-			P.physique = A.start_physique
-//			P.dexterity = A.start_dexterity
-			P.social = A.start_social
-			P.mentality = A.start_mentality
-			P.blood = A.start_blood
-			P.diablerist = 0
-			P.masquerade = initial(P.masquerade)
-			P.generation = initial(P.generation)
-			qdel(P.clane)
-			P.clane = new /datum/vampireclane/brujah()
-			P.discipline_types = list()
-			P.discipline_levels = list()
-			for (var/i in 1 to P.clane.clane_disciplines.len)
-				P.discipline_types += P.clane.clane_disciplines[i]
-				P.discipline_levels += 1
-			P.enlightenment = P.clane.enlightenment
-			P.humanity = P.clane.start_humanity
-			P.real_name = random_unique_name(P.gender)
-			P.true_experience = 50
-			P.save_character()
-			P.save_preferences()
+			P.reset_character()
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -282,34 +285,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//we couldn't load character data so just randomize the character appearance + name
 	random_species()
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
-	slotlocked = 0
-	torpor_count = 0
-	generation_bonus = 0
-	physique = 1
-	dexterity = 1
-	social = 1
-	mentality = 1
-	lockpicking = 0
-	athletics = 0
-	blood = 1
-	archetype = pick(subtypesof(/datum/archetype))
-	var/datum/archetype/A = new archetype()
-	physique = A.start_physique
-//	dexterity = A.start_dexterity
-	social = A.start_social
-	mentality = A.start_mentality
-	blood = A.start_blood
-	diablerist = 0
-	masquerade = initial(masquerade)
-	generation = initial(generation)
-	qdel(clane)
-	clane = new /datum/vampireclane/brujah()
-	for (var/i in 1 to clane.clane_disciplines.len)
-		discipline_types += clane.clane_disciplines[i]
-		discipline_levels += 1
-	enlightenment = clane.enlightenment
-	humanity = clane.start_humanity
-	true_experience = 50
+	reset_shit()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C?.set_macros()
 //	pref_species = new /datum/species/kindred()
@@ -1266,6 +1242,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 		var/datum/job/lastJob
 
+		var/bypass = FALSE
+		if (check_rights_for(user.client, R_ADMIN))
+			bypass = TRUE
+
 		for(var/datum/job/job in sortList(SSjob.occupations, GLOBAL_PROC_REF(cmp_job_display_asc)))
 
 			index += 1
@@ -1287,20 +1267,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			//<font color=red>text</font> (Zamenil potomu chto slishkom rezhet glaza
-			if(required_playtime_remaining)
+			if(required_playtime_remaining && !bypass)
 				HTML += "<font color=#290204>[rank]</font></td><td><font color=#290204> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \]</font></td></tr>"
 				continue
-			if(!job.player_old_enough(user.client))
+			if(!job.player_old_enough(user.client) && !bypass)
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=#290204>[rank]</font></td><td><font color=#290204> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
 				continue
-			if(generation > job.minimal_generation)
+			if((generation > job.minimal_generation) && !bypass)
 				HTML += "<font color=#290204>[rank]</font></td><td><font color=#290204> \[FROM [job.minimal_generation] GENERATION AND OLDER\]</font></td></tr>"
 				continue
-			if(masquerade < job.minimal_masquerade)
+			if((masquerade < job.minimal_masquerade) && !bypass)
 				HTML += "<font color=#290204>[rank]</font></td><td><font color=#290204> \[[job.minimal_masquerade] MASQUERADE POINTS REQUIRED\]</font></td></tr>"
 				continue
-			if(!job.allowed_species.Find(pref_species.name))
+			if(!job.allowed_species.Find(pref_species.name) && !bypass)
 				HTML += "<font color=#290204>[rank]</font></td><td><font color=#290204> \[[pref_species.name] RESTRICTED\]</font></td></tr>"
 				continue
 			if(pref_species.name == "Vampire")
@@ -1309,7 +1289,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					for(var/i in job.allowed_bloodlines)
 						if(i == clane.name)
 							alloww = TRUE
-					if(!alloww)
+					if(!alloww && !bypass)
 						HTML += "<font color=#290204>[rank]</font></td><td><font color=#290204> \[[clane.name] RESTRICTED\]</font></td></tr>"
 						continue
 			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
@@ -2203,34 +2183,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("friend_text")
 					var/new_text = input(user, "What a Friend knows about me:", "Character Preference") as text|null
 					if(new_text)
-						friend_text = sanitize_text(new_text)
+						friend_text = trim(copytext_char(sanitize(new_text), 1, 512))
 				if("enemy_text")
 					var/new_text = input(user, "What an Enemy knows about me:", "Character Preference") as text|null
 					if(new_text)
-						enemy_text = sanitize_text(new_text)
+						enemy_text = trim(copytext_char(sanitize(new_text), 1, 512))
 				if("lover_text")
 					var/new_text = input(user, "What a Lover knows about me:", "Character Preference") as text|null
 					if(new_text)
-						lover_text = sanitize_text(new_text)
+						lover_text = trim(copytext_char(sanitize(new_text), 1, 512))
 
 				if("flavor_text")
 					var/new_flavor = input(user, "Choose your character's flavor text:", "Character Preference")  as text|null
 					if(new_flavor)
-						//[Lucia] TODO: fix jank made in haste
-						var/pattern = "<img"
-						var/pos = findtext(new_flavor, pattern)
-						if(pos)
-							to_chat(src, "Embedding images is not allowed.")
-							return
-						pattern = "<picture"
-						pos = findtext(new_flavor, pattern)
-						if(pos)
-							to_chat(src, "Embedding images is not allowed.")
-							return
-						if(length(new_flavor) > 3 * 512)
-							to_chat(user, "Too long...")
-						else
-							flavor_text = sanitize_text(new_flavor)
+						flavor_text = trim(copytext_char(sanitize(new_flavor), 1, 512))
 
 				if("change_appearance")
 					if((true_experience < 3) || !slotlocked)
@@ -2796,78 +2762,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("reset_all")
 					if (alert("Are you sure you want to reset your character?", "Confirmation", "Yes", "No") != "Yes")
 						return
-					slotlocked = 0
-					diablerist = 0
-					torpor_count = 0
-					generation_bonus = 0
-					physique = 1
-					dexterity = 1
-					mentality = 1
-					social = 1
-					lockpicking = 0
-					athletics = 0
-					blood = 1
-					masquerade = initial(masquerade)
-					generation = initial(generation)
-					archetype = pick(subtypesof(/datum/archetype))
-					var/datum/archetype/A = new archetype()
-					physique = A.start_physique
-					mentality = A.start_mentality
-					social = A.start_social
-					blood = A.start_blood
-					qdel(clane)
-					clane = new /datum/vampireclane/brujah()
-					discipline_types = list()
-					discipline_levels = list()
-					for (var/i in 1 to clane.clane_disciplines.len)
-						discipline_types += clane.clane_disciplines[i]
-						discipline_levels += 1
-					humanity = clane.start_humanity
-					enlightenment = clane.enlightenment
-					random_species()
-					random_character()
-					body_model = rand(1, 3)
-					true_experience = 50
-					real_name = random_unique_name(gender)
-					save_character()
+					reset_character()
 
 				if("changeslot")
 					if(!load_character(text2num(href_list["num"])))
-						//"Reset all" code is copied here to ensure new characters do not copy stats from slot 1
-						slotlocked = 0
-						diablerist = 0
-						torpor_count = 0
-						generation_bonus = 0
-						physique = 1
-						dexterity = 1
-						mentality = 1
-						social = 1
-						lockpicking = 0
-						athletics = 0
-						blood = 1
-						masquerade = initial(masquerade)
-						generation = initial(generation)
-						archetype = pick(subtypesof(/datum/archetype))
-						var/datum/archetype/A = new archetype()
-						physique = A.start_physique
-						mentality = A.start_mentality
-						social = A.start_social
-						blood = A.start_blood
-						qdel(clane)
-						clane = new /datum/vampireclane/brujah()
-						discipline_types = list()
-						discipline_levels = list()
-						for (var/i in 1 to clane.clane_disciplines.len)
-							discipline_types += clane.clane_disciplines[i]
-							discipline_levels += 1
-						humanity = clane.start_humanity
-						enlightenment = clane.enlightenment
-						random_species()
-						random_character()
-						body_model = rand(1, 3)
-						true_experience = 50
-						real_name = random_unique_name(gender)
-						save_character()
+						reset_character()
 
 				if("tab")
 					if (href_list["tab"])
@@ -2882,7 +2781,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	save_preferences()
 	save_character()
 	ShowChoices(user)
-	return 1
+	return TRUE
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, character_setup = FALSE, antagonist = FALSE, is_latejoiner = TRUE)
 
@@ -2947,11 +2846,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.bloodpool = character.maxbloodpool
 
 	if(pref_species.name == "Werewolf")
-		character.maxHealth = round((initial(character.maxHealth)+(initial(character.maxHealth)/4)*character.physique))
-		character.health = round((initial(character.maxHealth)+(initial(character.maxHealth)/4)*character.physique))
+		character.maxHealth = round((initial(character.maxHealth)+(initial(character.maxHealth)/4)*(character.physique + character.additional_physique)))
+		character.health = round((initial(character.maxHealth)+(initial(character.maxHealth)/4)*(character.physique + character.additional_physique )))
 	else
-		character.maxHealth = round((initial(character.maxHealth)-initial(character.maxHealth)/4)+(initial(character.maxHealth)/4)*(character.physique+13-generation))
-		character.health = round((initial(character.health)-initial(character.health)/4)+(initial(character.health)/4)*(character.physique+13-generation))
+		character.maxHealth = round((initial(character.maxHealth)-initial(character.maxHealth)/4)+(initial(character.maxHealth)/4)*((character.physique+character.additional_physique )+13-generation))
+		character.health = round((initial(character.health)-initial(character.health)/4)+(initial(character.health)/4)*((character.physique+character.additional_physique )+13-generation))
 	if(pref_species.name == "Vampire")
 		character.humanity = humanity
 	character.masquerade = masquerade
@@ -3066,9 +2965,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				character.transformator.lupus_form.social = social
 				character.transformator.lupus_form.blood = blood
 
-				character.transformator.lupus_form.maxHealth = round((initial(character.transformator.lupus_form.maxHealth)+(initial(character.maxHealth)/4)*character.physique))+(character.auspice.level-1)*50
+				character.transformator.lupus_form.maxHealth = round((initial(character.transformator.lupus_form.maxHealth)+(initial(character.maxHealth)/4)*(character.physique + character.additional_physique )))+(character.auspice.level-1)*50
 				character.transformator.lupus_form.health = character.transformator.lupus_form.maxHealth
-				character.transformator.crinos_form.maxHealth = round((initial(character.transformator.crinos_form.maxHealth)+(initial(character.maxHealth)/4)*character.physique))+(character.auspice.level-1)*50
+				character.transformator.crinos_form.maxHealth = round((initial(character.transformator.crinos_form.maxHealth)+(initial(character.maxHealth)/4)*(character.physique + character.additional_physique )))+(character.auspice.level-1)*50
 				character.transformator.crinos_form.health = character.transformator.crinos_form.maxHealth
 //		character.transformator.crinos_form.update_icons()
 //		character.transformator.lupus_form.update_icons()
