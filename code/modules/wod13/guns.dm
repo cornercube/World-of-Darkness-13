@@ -578,7 +578,6 @@
 	worn_icon_state = "rifle"
 	w_class = WEIGHT_CLASS_BULKY
 	mag_type = /obj/item/ammo_box/magazine/vampautoshot
-	burst_size = 1
 	fire_delay = 2
 	spread = 4
 	bolt_type = BOLT_TYPE_LOCKING
