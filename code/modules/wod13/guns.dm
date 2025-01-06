@@ -564,7 +564,7 @@
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	onflooricon = 'code/modules/wod13/onfloor.dmi'
 	icon_state = "spas15"
-	ammo_type = obj/item/ammo_casing/vampire/c12g/buck
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck
 	caliber = CALIBER_12G
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
