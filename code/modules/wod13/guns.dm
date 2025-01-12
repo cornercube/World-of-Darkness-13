@@ -23,8 +23,8 @@
 	max_ammo = 6
 
 /obj/item/gun/ballistic/vampire/revolver
-	name = "\improper revolver"
-	desc = "Old, but reliable."
+	name = "\improper magnum revolver"
+	desc = "Feelin' lucky, punk?"
 	icon_state = "revolver"
 	inhand_icon_state = "revolver"
 	worn_icon_state = "revolver"
@@ -40,6 +40,7 @@
 	internal_magazine = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
+	cost = 25
 	var/spin_delay = 10
 	var/recent_spin = 0
 
@@ -101,6 +102,26 @@
 	if (current_skin)
 		. += "It can be spun with <b>alt+click</b>"
 
+
+/obj/item/gun/ballistic/vampire/revolver/snub
+	name = "\improper snub-nosed revolver"
+	desc = "a cheap Saturday night special revolver. Sometimes called a 'purse gun'. It takes 9mm rounds."
+	icon_state = "revolver_snub"
+	inhand_icon_state = "revolver_snub"
+	worn_icon_state = "revolver_snub"
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev9mm
+	w_class = WEIGHT_CLASS_SMALL
+	initial_caliber = CALIBER_9MM
+	fire_sound_volume = 65
+	projectile_damage_multiplier = 1.2 //21.6 damage, slightly higher than the m1911, just so it is possible to kill NPCs within 6 bullets
+	cost = 20
+
+/obj/item/ammo_box/magazine/internal/cylinder/rev9mm
+	name = "revolver cylinder"
+	ammo_type = /obj/item/ammo_casing/vampire/c9mm
+	caliber = CALIBER_9MM
+	max_ammo = 6
+
 /obj/item/ammo_box/magazine/m44
 	name = "handgun magazine (.44)"
 	icon = 'code/modules/wod13/ammo.dmi'
@@ -120,8 +141,9 @@
 	icon_state = "deagle"
 	inhand_icon_state = "deagle"
 	worn_icon_state = "deagle"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m44
+	recoil = 3
 	burst_size = 1
 	fire_delay = 0
 	actions_types = list()
@@ -137,6 +159,29 @@
 	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
 	fire_sound_volume = 75
+	cost = 75
+
+/obj/item/ammo_box/magazine/m50
+	name = "handgun magazine (.50)"
+	icon = 'code/modules/wod13/ammo.dmi'
+	lefthand_file = 'code/modules/wod13/righthand.dmi'
+	righthand_file = 'code/modules/wod13/lefthand.dmi'
+	worn_icon = 'code/modules/wod13/worn.dmi'
+	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	icon_state = "deagle"
+	ammo_type = /obj/item/ammo_casing/vampire/c50
+	caliber = CALIBER_50
+	max_ammo = 7
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/vampire/deagle/c50
+	name = "\improper McLusky .50 caliber "
+	desc = "An extremely powerful, and rare, handcannon."
+	icon_state = "deagle50"
+	inhand_icon_state = "deagle"
+	worn_icon_state = "deagle"
+	mag_type = /obj/item/ammo_box/magazine/m50
+	fire_sound_volume = 125 //MY EARS
 
 /obj/item/ammo_box/magazine/vamp45acp
 	name = "pistol magazine (.45 ACP)"
@@ -174,6 +219,7 @@
 	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
 	fire_sound_volume = 100
+	cost = 55
 
 /obj/item/ammo_box/magazine/glock9mm
 	name = "automatic pistol magazine (9mm)"
@@ -211,6 +257,45 @@
 	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
 	fire_sound_volume = 100
+	cost = 70
+
+/obj/item/ammo_box/magazine/glock45acp
+	name = "automatic pistol magazine (.45 ACP)"
+	icon = 'code/modules/wod13/ammo.dmi'
+//	lefthand_file = 'code/modules/wod13/righthand.dmi'
+//	righthand_file = 'code/modules/wod13/lefthand.dmi'
+	worn_icon = 'code/modules/wod13/worn.dmi'
+	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	icon_state = "glock21"
+	ammo_type = /obj/item/ammo_casing/vampire/c9mm
+	caliber = CALIBER_45
+	max_ammo = 12
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/vampire/glock21
+	name = "\improper Glock 21"
+	desc = "Very fast 45 ACP handgun."
+	icon_state = "glock19"
+	inhand_icon_state = "glock19"
+	worn_icon_state = "glock19"
+	w_class = WEIGHT_CLASS_SMALL
+	mag_type = /obj/item/ammo_box/magazine/glock45acp
+	burst_size = 3
+	fire_delay = 1
+	actions_types = list()
+	bolt_type = BOLT_TYPE_LOCKING
+	fire_sound = 'code/modules/wod13/sounds/glock.ogg'
+	dry_fire_sound = 'sound/weapons/gun/pistol/dry_fire.ogg'
+	load_sound = 'sound/weapons/gun/pistol/mag_insert.ogg'
+	load_empty_sound = 'sound/weapons/gun/pistol/mag_insert.ogg'
+	eject_sound = 'sound/weapons/gun/pistol/mag_release.ogg'
+	eject_empty_sound = 'sound/weapons/gun/pistol/mag_release.ogg'
+	vary_fire_sound = FALSE
+	rack_sound = 'sound/weapons/gun/pistol/rack_small.ogg'
+	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
+	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
+	fire_sound_volume = 100
+	cost = 150
 
 /obj/item/ammo_box/magazine/vamp9mm
 	name = "uzi magazine (9mm)"
@@ -222,22 +307,25 @@
 	icon_state = "uzi"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	caliber = CALIBER_9MM
-	max_ammo = 25
+	max_ammo = 32
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/gun/ballistic/automatic/vampire/uzi
-	name = "\improper Type U3 Uzi"
+	name = "\improper Killamatic Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
 	icon_state = "uzi"
 	inhand_icon_state = "uzi"
 	worn_icon_state = "uzi"
 	mag_type = /obj/item/ammo_box/magazine/vamp9mm
-	burst_size = 2
+	burst_size = 5
+	spread = 11
+	recoil = 5
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
 	mag_display = TRUE
 	rack_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'code/modules/wod13/sounds/uzi.ogg'
+	cost = 175
 
 /obj/item/ammo_box/magazine/vamp9mp5
 	name = "mp5 magazine (9mm)"
@@ -249,7 +337,7 @@
 	icon_state = "mp5"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	caliber = CALIBER_9MM
-	max_ammo = 25
+	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/gun/ballistic/automatic/vampire/mp5
@@ -260,12 +348,14 @@
 	inhand_icon_state = "mp5"
 	worn_icon_state = "mp5"
 	mag_type = /obj/item/ammo_box/magazine/vamp9mp5
-	burst_size = 3
-	bolt_type = BOLT_TYPE_OPEN
+	burst_size = 4
+	spread = 4
+	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
 	rack_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'code/modules/wod13/sounds/mp5.ogg'
+	cost = 200
 
 /obj/item/ammo_box/magazine/vamp556
 	name = "carbine magazine (5.56mm)"
@@ -282,7 +372,7 @@
 
 /obj/item/gun/ballistic/automatic/vampire/ar15
 	name = "\improper AR-15 Carbine"
-	desc = "A five-round burst 5.56 toploading carbine, designated 'AR-15'."
+	desc = "A two-round burst 5.56 toploading carbine, designated 'AR-15'."
 	icon = 'code/modules/wod13/48x32weapons.dmi'
 	icon_state = "rifle"
 	inhand_icon_state = "rifle"
@@ -291,12 +381,13 @@
 	mag_type = /obj/item/ammo_box/magazine/vamp556
 	burst_size = 2
 	fire_delay = 2
-	spread = 5
-	bolt_type = BOLT_TYPE_OPEN
+	spread = 4
+	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
 	fire_sound = 'code/modules/wod13/sounds/rifle.ogg'
 	masquerade_violating = TRUE
+	cost = 250
 
 /obj/item/ammo_box/magazine/vamp545
 	name = "rifle magazine (5.45mm)"
@@ -313,21 +404,23 @@
 
 /obj/item/gun/ballistic/automatic/vampire/ak74
 	name = "\improper Kalashnikov's Automatic Rifle 74"
-	desc = "Pretty old, but also easy fireable and cleanable by vodka."
+	desc = "Pretty old, but also easy fireable and cleanable by vodka.Uses 5.45 rounds."
 	icon = 'code/modules/wod13/48x32weapons.dmi'
 	icon_state = "ak74"
 	inhand_icon_state = "ak74"
 	worn_icon_state = "ak74"
 	w_class = WEIGHT_CLASS_BULKY
 	mag_type = /obj/item/ammo_box/magazine/vamp545
+	recoil = 5
 	burst_size = 3
-	fire_delay = 2
-	spread = 5
-	bolt_type = BOLT_TYPE_OPEN
+	fire_delay = 3
+	spread = 8
+	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
 	fire_sound = 'code/modules/wod13/sounds/ak.ogg'
 	masquerade_violating = TRUE
+	cost = 225
 
 /obj/item/ammo_box/magazine/vampaug
 	name = "AUG magazine (5.56mm)"
@@ -344,7 +437,7 @@
 
 /obj/item/gun/ballistic/automatic/vampire/aug
 	name = "\improper Steyr AUG-77"
-	desc = "A five-round burst 5.56 toploading carbine, designated 'Steyr AUG-77'."
+	desc = "A three-round burst 5.56 bullpup design, designated 'Steyr AUG-77'."
 	icon = 'code/modules/wod13/48x32weapons.dmi'
 	icon_state = "aug"
 	inhand_icon_state = "aug"
@@ -352,13 +445,15 @@
 	w_class = WEIGHT_CLASS_BULKY
 	mag_type = /obj/item/ammo_box/magazine/vampaug
 	burst_size = 3
-	fire_delay = 1
-	spread = 5
-	bolt_type = BOLT_TYPE_OPEN
+	fire_delay = 2
+	spread = 3
+	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
 	fire_sound = 'code/modules/wod13/sounds/rifle.ogg'
 	masquerade_violating = TRUE
+	cost = 350
+	is_iron = FALSE
 
 /obj/item/ammo_box/magazine/vampthompson
 	name = "tommy gun magazine (.45 ACP)"
@@ -382,14 +477,16 @@
 	worn_icon_state = "thompson"
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/vampthompson
-	burst_size = 10
-	fire_delay = 1
-	spread = 5
+	recoil = 7
+	burst_size = 5
+	fire_delay = 3
+	spread = 15
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
 	mag_display = TRUE
 	fire_sound = 'code/modules/wod13/sounds/thompson.ogg'
 	masquerade_violating = TRUE
+	cost = 250
 
 /obj/item/ammo_box/magazine/internal/vampire/sniper
 	name = "sniper rifle internal magazine"
@@ -428,6 +525,7 @@
 	projectile_damage_multiplier = 1.5
 	actions_types = list()
 	masquerade_violating = TRUE
+	cost = 250
 
 /obj/item/ammo_box/magazine/internal/vampshotgun
 	name = "shotgun internal magazine"
@@ -439,20 +537,22 @@
 
 /obj/item/gun/ballistic/shotgun/vampire
 	name = "shotgun"
-	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
+	desc = "A traditional shotgun with wood furniture and a six-round tube magazine."
 	icon = 'code/modules/wod13/48x32weapons.dmi'
 	lefthand_file = 'code/modules/wod13/righthand.dmi'
 	righthand_file = 'code/modules/wod13/lefthand.dmi'
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "pomp"
 	inhand_icon_state = "pomp"
 	worn_icon_state = "pomp"
-	fire_delay = 8
+	recoil = 6
+	fire_delay = 6
 	mag_type = /obj/item/ammo_box/magazine/internal/vampshotgun
 	can_be_sawn_off	= FALSE
 	fire_sound = 'code/modules/wod13/sounds/pomp.ogg'
-	recoil = 2
+	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 
@@ -507,6 +607,7 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	masquerade_violating = TRUE
+	is_iron = FALSE
 
 /obj/item/ammo_box/magazine/internal/vampcrossbow
 	ammo_type = /obj/item/ammo_casing/caseless/bolt
@@ -603,5 +704,4 @@
 							oil = max(0, oil-10)
 							if(oil == 0)
 								icon_state = "flamethrower1"
-							if(get_dist(F, user) == 1)
-								new /obj/effect/fire(F)
+						new /obj/effect/fire(F)
