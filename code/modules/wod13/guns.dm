@@ -235,7 +235,7 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/gun/ballistic/automatic/vampire/glock19
-	name = "\improper Glock 19"
+	name = "\improper Brokk 19"
 	desc = "Very fast 9mm handgun."
 	icon_state = "glock19"
 	inhand_icon_state = "glock19"
@@ -273,7 +273,7 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/gun/ballistic/automatic/vampire/glock21
-	name = "\improper Glock 21"
+	name = "\improper Brokk 21"
 	desc = "Very fast 45 ACP handgun."
 	icon_state = "glock19"
 	inhand_icon_state = "glock19"
@@ -296,6 +296,45 @@
 	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
 	fire_sound_volume = 100
 	cost = 150
+
+/obj/item/gun/ballistic/automatic/vampire/beretta
+	name = "\improper Elite 9mm"
+	desc = "A 9mm pistol favored among law enforcement and criminal alike due to it's use in action movies. Often, it is wielded in pairs."
+	icon_state = "beretta"
+	inhand_icon_state = "beretta"
+	worn_icon_state = "beretta"
+	w_class = WEIGHT_CLASS_SMALL
+	mag_type = /obj/item/ammo_box/magazine/semi9mm
+	burst_size = 1
+	fire_delay = 1
+	actions_types = list()
+	bolt_type = BOLT_TYPE_LOCKING
+	fire_sound = 'code/modules/wod13/sounds/glock.ogg'
+	dry_fire_sound = 'sound/weapons/gun/pistol/dry_fire.ogg'
+	load_sound = 'sound/weapons/gun/pistol/mag_insert.ogg'
+	load_empty_sound = 'sound/weapons/gun/pistol/mag_insert.ogg'
+	eject_sound = 'sound/weapons/gun/pistol/mag_release.ogg'
+	eject_empty_sound = 'sound/weapons/gun/pistol/mag_release.ogg'
+	vary_fire_sound = FALSE
+	rack_sound = 'sound/weapons/gun/pistol/rack_small.ogg'
+	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
+	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
+	fire_sound_volume = 100
+	cost = 70
+
+/obj/item/ammo_box/magazine/semi9mm
+	name = "pistol magazine (9mm)"
+	icon = 'code/modules/wod13/ammo.dmi'
+//	lefthand_file = 'code/modules/wod13/righthand.dmi'
+//	righthand_file = 'code/modules/wod13/lefthand.dmi'
+	worn_icon = 'code/modules/wod13/worn.dmi'
+	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	icon_state = "pistol9mm"
+	ammo_type = /obj/item/ammo_casing/vampire/c9mm
+	caliber = CALIBER_9MM
+	max_ammo = 18
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
 
 /obj/item/ammo_box/magazine/vamp9mm
 	name = "uzi magazine (9mm)"
