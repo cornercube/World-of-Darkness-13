@@ -428,6 +428,36 @@
 	masquerade_violating = TRUE
 	cost = 250
 
+/obj/item/ammo_box/magazine/hunt556
+	name = "rifle magazine (5.56mm)"
+	icon = 'code/modules/wod13/ammo.dmi'
+	worn_icon = 'code/modules/wod13/worn.dmi'
+	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	icon_state = "huntrifle"
+	ammo_type = /obj/item/ammo_casing/vampire/c556mm
+	caliber = CALIBER_556
+	max_ammo = 20
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/vampire/huntrifle
+	name = "\improper hunting rifle"
+	desc = "A semi-automatic hunting rifle, just like what your dad used to use. If your dad didn't go out to get milk, anyways."
+	icon = 'code/modules/wod13/48x32weapons.dmi'
+	icon_state = "huntrifle"
+	inhand_icon_state = "huntrifle"
+	worn_icon_state = "huntrifle"
+	w_class = WEIGHT_CLASS_BULKY
+	mag_type = /obj/item/ammo_box/magazine/hunt556
+	burst_size = 1
+	fire_delay = 1
+	spread = 2
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
+	mag_display = TRUE
+	fire_sound = 'code/modules/wod13/sounds/rifle.ogg'
+	masquerade_violating = TRUE
+	cost =150
+
 /obj/item/ammo_box/magazine/vamp545
 	name = "rifle magazine (5.45mm)"
 	icon = 'code/modules/wod13/ammo.dmi'
