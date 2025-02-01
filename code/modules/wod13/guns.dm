@@ -298,7 +298,7 @@
 	cost = 150
 
 /obj/item/gun/ballistic/automatic/vampire/beretta
-	name = "\improper Elite 9mm"
+	name = "\improper Elite 92F"
 	desc = "A 9mm pistol favored among law enforcement and criminal alike due to it's use in action movies. Often, it is wielded in pairs."
 	icon_state = "beretta"
 	inhand_icon_state = "beretta"
@@ -441,7 +441,7 @@
 
 /obj/item/gun/ballistic/automatic/vampire/huntrifle
 	name = "\improper hunting rifle"
-	desc = "A semi-automatic hunting rifle, just like what your dad used to use. If your dad didn't go out to get milk, anyways."
+	desc = "A semi-automatic hunting rifle, just like what your dad used to shoot. If your dad didn't go out to get milk, anyways."
 	icon = 'code/modules/wod13/48x32weapons.dmi'
 	icon_state = "huntrifle"
 	inhand_icon_state = "huntrifle"
