@@ -306,7 +306,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/semi9mm
 	burst_size = 1
-	fire_delay = 1
+	fire_delay = 0 //spam it
 	dual_wield_spread = 12 //DUAL ELITES!
 	actions_types = list()
 	bolt_type = BOLT_TYPE_LOCKING
