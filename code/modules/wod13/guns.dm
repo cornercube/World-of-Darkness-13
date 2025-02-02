@@ -307,6 +307,7 @@
 	mag_type = /obj/item/ammo_box/magazine/semi9mm
 	burst_size = 1
 	fire_delay = 1
+	dual_wield_spread = 12 //DUAL ELITES!
 	actions_types = list()
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = 'code/modules/wod13/sounds/glock.ogg'
@@ -319,8 +320,18 @@
 	rack_sound = 'sound/weapons/gun/pistol/rack_small.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
-	fire_sound_volume = 100
+	fire_sound_volume = 75
 	cost = 70
+
+/obj/item/gun/ballistic/automatic/vampire/beretta/toreador
+	name = "\improper Sword Series S 9mm"
+	desc = "A handgun that has been heavily decorated and customized. The improvements seem almost supernaturally good, you feel like the engravings have given you a tactical advantage."
+	icon_state = "beretta_toreador"
+	inhand_icon_state = "beretta_toreador"
+	worn_icon_state = "beretta"
+	projectile_damage_multiplier = 2.5
+	fire_sound_volume = 110
+	cost = 666
 
 /obj/item/ammo_box/magazine/semi9mm
 	name = "pistol magazine (9mm)"
@@ -334,6 +345,10 @@
 	caliber = CALIBER_9MM
 	max_ammo = 18
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/ammo_box/magazine/semi9mm/toreador
+	name = "custom pistol magazine (9mm)"
+	ammo_type = /obj/projectile/beam/beam_rifle/vampire/vamp9mm/silver
 
 
 /obj/item/ammo_box/magazine/vamp9mm
