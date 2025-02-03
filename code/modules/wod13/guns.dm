@@ -298,7 +298,7 @@
 	cost = 150
 
 /obj/item/gun/ballistic/automatic/vampire/beretta
-	name = "\improper Elite 92F"
+	name = "\improper Elite 92G"
 	desc = "A 9mm pistol favored among law enforcement and criminal alike due to it's use in action movies. Often, it is wielded in pairs."
 	icon_state = "beretta"
 	inhand_icon_state = "beretta"
@@ -340,7 +340,7 @@
 //	righthand_file = 'code/modules/wod13/lefthand.dmi'
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	onflooricon = 'code/modules/wod13/onfloor.dmi'
-	icon_state = "beretta"
+	icon_state = "pistol9mm"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 18
@@ -448,7 +448,7 @@
 	icon = 'code/modules/wod13/ammo.dmi'
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	onflooricon = 'code/modules/wod13/onfloor.dmi'
-	icon_state = "huntrifle"
+	icon_state = "hunt556"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm
 	caliber = CALIBER_556
 	max_ammo = 20
