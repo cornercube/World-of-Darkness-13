@@ -307,7 +307,7 @@
 	mag_type = /obj/item/ammo_box/magazine/semi9mm
 	burst_size = 1
 	fire_delay = 0 //spam it
-	dual_wield_spread = 12 //DUAL ELITES!
+	dual_wield_spread = 10 //DUAL ELITES!
 	actions_types = list()
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = 'code/modules/wod13/sounds/glock.ogg'
@@ -340,7 +340,7 @@
 //	righthand_file = 'code/modules/wod13/lefthand.dmi'
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	onflooricon = 'code/modules/wod13/onfloor.dmi'
-	icon_state = "pistol9mm"
+	icon_state = "beretta"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 18
