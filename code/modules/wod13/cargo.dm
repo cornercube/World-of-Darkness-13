@@ -225,6 +225,20 @@
 	contains = list(/obj/item/gun/ballistic/automatic/vampire/mp5)
 	crate_name = "weapon crate"
 
+/datum/supply_pack/vampire/glock
+	name = "Weapon (Brokk19)"
+	desc = "Contains a Brokk19 handgun."
+	cost = 600
+	contains = list(/obj/item/gun/ballistic/automatic/vampire/glock19)
+	crate_name = "weapon crate"
+
+/datum/supply_pack/vampire/beretta
+	name = "Weapon (Dual Elite 92F)"
+	desc = "Contains a pair of Elite 92F handguns."
+	cost = 900
+	contains = list(/obj/item/gun/ballistic/automatic/vampire/beretta,/obj/item/gun/ballistic/automatic/vampire/beretta)
+	crate_name = "weapon crate"
+
 /datum/supply_pack/vampire/ammo9
 	name = "Ammo (9mm)"
 	desc = "Contains a box of 9mm ammunition."
@@ -359,10 +373,17 @@
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/magazine_glock19
-	name = "Ammo (Glock19 magazine)"
-	desc = "Contains a Glock19 magazine."
+	name = "Ammo (Brokk19 magazine)"
+	desc = "Contains a Brokk19 magazine."
 	cost = 100
 	contains = list(/obj/item/ammo_box/magazine/glock9mm)
+	crate_name = "ammo crate"
+
+/datum/supply_pack/vampire/magazine_glock19
+	name = "Ammo (2x Elite 92F magazines)"
+	desc = "Contains a pair of Elite 92F magazines."
+	cost = 180
+	contains = list(/obj/item/ammo_box/magazine/semi9mm, /obj/item/ammo_box/magazine/semi9mm)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/magazine_colt1911
