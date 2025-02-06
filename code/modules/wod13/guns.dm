@@ -471,7 +471,7 @@
 	mag_display = TRUE
 	fire_sound = 'code/modules/wod13/sounds/rifle.ogg'
 	masquerade_violating = FALSE
-	cost =150
+	cost = 150
 
 /obj/item/ammo_box/magazine/vamp545
 	name = "rifle magazine (5.45mm)"
