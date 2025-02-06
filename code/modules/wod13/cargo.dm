@@ -331,7 +331,7 @@
 
 /datum/supply_pack/vampire/magazine_glock19
 	name = "Ammo (3x Brokk19 magazine)"
-	desc = "Contains a Brokk19 magazine."
+	desc = "Contains three Brokk19 magazines."
 	cost = 100
 	contains = list(/obj/item/ammo_box/magazine/glock9mm, /obj/item/ammo_box/magazine/glock9mm, /obj/item/ammo_box/magazine/glock9mm)
 	crate_name = "ammo crate"
