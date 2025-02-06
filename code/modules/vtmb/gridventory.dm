@@ -1021,10 +1021,6 @@ VENTORY!
 	grid_width = 8 GRID_BOXES
 	grid_height = 2 GRID_BOXES
 
-/obj/item/ammo_box/magazine/hunt556
-	grid_width = 1 GRID_BOXES
-	grid_height = 2 GRID_BOXES
-
 /obj/item/gun/ballistic/automatic/vampire/huntrifle
 	grid_width = 8 GRID_BOXES
 	grid_height = 2 GRID_BOXES
