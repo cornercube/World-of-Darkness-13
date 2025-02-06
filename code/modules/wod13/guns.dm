@@ -424,6 +424,11 @@
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
+/obj/item/ammo_box/magazine/vamp556/hunt
+	name = "rifle magazine (5.56mm)"
+	icon_state = "hunt556"
+	max_ammo = 20
+
 /obj/item/gun/ballistic/automatic/vampire/ar15
 	name = "\improper AR-15 Carbine"
 	desc = "A two-round burst 5.56 toploading carbine, designated 'AR-15'."
@@ -443,17 +448,6 @@
 	masquerade_violating = TRUE
 	cost = 250
 
-/obj/item/ammo_box/magazine/hunt556
-	name = "rifle magazine (5.56mm)"
-	icon = 'code/modules/wod13/ammo.dmi'
-	worn_icon = 'code/modules/wod13/worn.dmi'
-	onflooricon = 'code/modules/wod13/onfloor.dmi'
-	icon_state = "hunt556"
-	ammo_type = /obj/item/ammo_casing/vampire/c556mm
-	caliber = CALIBER_556
-	max_ammo = 20
-	multiple_sprites = AMMO_BOX_FULL_EMPTY
-
 /obj/item/gun/ballistic/automatic/vampire/huntrifle
 	name = "\improper hunting rifle"
 	desc = "A semi-automatic hunting rifle, just like what your dad used to shoot. If your dad didn't go out to get milk, anyways."
@@ -462,7 +456,7 @@
 	inhand_icon_state = "huntrifle"
 	worn_icon_state = "huntrifle"
 	w_class = WEIGHT_CLASS_BULKY
-	mag_type = /obj/item/ammo_box/magazine/hunt556
+	mag_type = /obj/item/ammo_box/magazine/vamp556/hunt
 	burst_size = 1
 	fire_delay = 1
 	spread = 2
