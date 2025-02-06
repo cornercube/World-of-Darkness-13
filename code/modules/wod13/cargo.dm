@@ -169,10 +169,10 @@
 	crate_name = "weapon crate"
 
 /datum/supply_pack/vampire/beretta
-	name = "Weapon (Dual Elite 92F)"
-	desc = "Contains a pair of Elite 92F handguns."
+	name = "Weapon (Dual Elite 92G)"
+	desc = "Contains a pair of Elite 92G handguns."
 	cost = 900
-	contains = list(/obj/item/gun/ballistic/automatic/vampire/beretta,/obj/item/gun/ballistic/automatic/vampire/beretta)
+	contains = list(/obj/item/gun/ballistic/automatic/vampire/beretta, /obj/item/gun/ballistic/automatic/vampire/beretta)
 	crate_name = "weapon crate"
 
 /datum/supply_pack/vampire/weaponuzi
