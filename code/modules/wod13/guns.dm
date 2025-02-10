@@ -449,7 +449,7 @@
 	cost = 250
 
 /obj/item/gun/ballistic/automatic/vampire/huntrifle
-	name = "\improper hunting rifle"
+	name = "hunting rifle"
 	desc = "A semi-automatic hunting rifle, just like what your dad used to shoot. If your dad didn't go out to get milk, anyways."
 	icon = 'code/modules/wod13/48x32weapons.dmi'
 	icon_state = "huntrifle"
