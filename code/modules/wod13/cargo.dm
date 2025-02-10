@@ -339,7 +339,7 @@
 /datum/supply_pack/vampire/magazine_beretta
 	name = "Ammo (4x Elite 92G magazines)"
 	desc = "Contains four Elite 92G magazines."
-	cost = 100
+	cost = 130
 	contains = list(/obj/item/ammo_box/magazine/semi9mm, /obj/item/ammo_box/magazine/semi9mm, /obj/item/ammo_box/magazine/semi9mm, /obj/item/ammo_box/magazine/semi9mm)
 	crate_name = "ammo crate"
 

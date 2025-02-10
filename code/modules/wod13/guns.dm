@@ -340,7 +340,7 @@
 //	righthand_file = 'code/modules/wod13/lefthand.dmi'
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	onflooricon = 'code/modules/wod13/onfloor.dmi'
-	icon_state = "pistol9mm"
+	icon_state = "semi9mm"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 18
@@ -348,7 +348,7 @@
 
 /obj/item/ammo_box/magazine/semi9mm/toreador
 	name = "custom pistol magazine (9mm)"
-	ammo_type = /obj/projectile/beam/beam_rifle/vampire/vamp9mm/silver
+	ammo_type = /obj/item/ammo_casing/vampire/c9mm/silver
 
 
 /obj/item/ammo_box/magazine/vamp9mm
