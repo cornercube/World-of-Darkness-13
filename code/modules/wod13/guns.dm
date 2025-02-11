@@ -350,7 +350,6 @@
 	name = "custom pistol magazine (9mm)"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm/silver
 
-
 /obj/item/ammo_box/magazine/vamp9mm
 	name = "uzi magazine (9mm)"
 	icon = 'code/modules/wod13/ammo.dmi'
